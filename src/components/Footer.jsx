@@ -13,7 +13,7 @@ const Footer = () => {
           </div>
           
           <div className="footer-social">
-            <a href="https://www.linkedin.com/in/bhuvneshwar-pather-42838b506" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/bhuvneshwar-pather-428381306/" target="_blank" rel="noopener noreferrer">
               <FaLinkedin className="social-icon" />
             </a>
             <a href="mailto:BHUVNESHWARPATHER1@GMAIL.COM">

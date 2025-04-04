@@ -38,8 +38,8 @@ const Contact = () => {
               
               <div className="contact-item">
                 <FaLinkedin className="contact-icon" />
-                <a href="https://www.linkedin.com/in/bhuvneshwar-pather-42838b506" target="_blank" rel="noopener noreferrer">
-                  linkedin.com/in/bhuvneshwar-pather-42838b506
+                <a href="https://www.linkedin.com/in/bhuvneshwar-pather-428381306/" target="_blank" rel="noopener noreferrer">
+                  linkedin.com/in/bhuvneshwar-pather-428381306
                 </a>
               </div>
             </div>
