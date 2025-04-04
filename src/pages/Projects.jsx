@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import DriveGallery from '../components/DriveGallery';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -7,6 +8,32 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      title: 'Sunnybeans Coffee',
+      category: 'branding',
+      image: '/sunnybeans.jpg',
+      link: 'https://www.behance.net/gallery/112091523/Sunnybeans-Coffee-Brand-Identity?tracking_source=search_projects|packaging+coffee&l=50',
+      description: [
+        'Developed sophisticated brand identity for artisanal coffee house',
+        'Created iconic logo featuring sun and coffee bean elements',
+        'Implemented warm, inviting color palette with gold accents',
+        'Designed cohesive packaging and promotional materials'
+      ]
+    },
+    {
+      id: 2,
+      title: 'Keylin Coffee',
+      category: 'branding',
+      image: '/Keylin_coffee.jpg',
+      link: 'https://www.behance.net/gallery/159618741/KEYLIN-COFFEE?tracking_source=for_you_logged_in_feed_recommended',
+      description: [
+        'Designed minimalist and modern coffee brand identity',
+        'Created distinctive logo with geometric coffee cup motif',
+        'Developed striking black and red color scheme',
+        'Implemented clean, contemporary packaging design'
+      ]
+    },
+    {
+      id: 3,
       title: 'Indian Dream Studio',
       category: 'branding',
       description: [
@@ -153,78 +180,100 @@ const Projects = () => {
     : projects.filter(project => project.category === activeFilter);
 
   return (
-    <section className="projects-section">
-      <div className="container">
-        <motion.div
-          className="section-title"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2>Featured Projects</h2>
-          <div className="underline"></div>
-        </motion.div>
+    <>
+      <section className="projects-section">
+        <div className="container">
+          <motion.div
+            className="section-title"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2>Featured Projects</h2>
+            <div className="underline"></div>
+          </motion.div>
 
-        <motion.div 
-          className="filter-container"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-        >
-          {filters.map((filter, index) => (
-            <button
-              key={index}
-              className={`filter-btn ${activeFilter === filter.value ? 'active' : ''}`}
-              onClick={() => setActiveFilter(filter.value)}
-            >
-              {filter.name}
-            </button>
-          ))}
-        </motion.div>
+          <motion.div 
+            className="filter-container"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            {filters.map((filter, index) => (
+              <button
+                key={index}
+                className={`filter-btn ${activeFilter === filter.value ? 'active' : ''}`}
+                onClick={() => setActiveFilter(filter.value)}
+              >
+                {filter.name}
+              </button>
+            ))}
+          </motion.div>
 
-        <motion.div 
-          className="projects-grid"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.1
-              }
-            }
-          }}
-        >
-          {filteredProjects.map((project) => (
-            <motion.div
-              className="project-card"
-              key={project.id}
-              variants={{
-                hidden: { y: 20, opacity: 0 },
-                visible: {
-                  y: 0,
-                  opacity: 1,
-                  transition: { duration: 0.4 }
+          <motion.div 
+            className="projects-grid"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.1
                 }
-              }}
-            >
-              <div className="project-content">
-                <h3>{project.title}</h3>
-                <ul>
-                  {project.description.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-                <div className="project-category">
-                  <span>{project.category}</span>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
+              }
+            }}
+          >
+            {filteredProjects.map((project) => (
+              <motion.div
+                key={project.id}
+                className="project-card"
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 }
+                }}
+              >
+                {project.link ? (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" style={{ display: 'block' }}>
+                    {project.image && (
+                      <img src={project.image} alt={project.title} style={{ width: '100%', height: 'auto', borderRadius: 'var(--border-radius) var(--border-radius) 0 0' }} />
+                    )}
+                    <div className="project-content">
+                      <h3>{project.title}</h3>
+                      <ul>
+                        {project.description.map((item, index) => (
+                          <li key={index}>{item}</li>
+                        ))}
+                      </ul>
+                      <div className="project-category">
+                        <span>{project.category}</span>
+                      </div>
+                    </div>
+                  </a>
+                ) : (
+                  <div className="project-content">
+                    <h3>{project.title}</h3>
+                    <ul>
+                      {project.description.map((item, index) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                    <div className="project-category">
+                      <span>{project.category}</span>
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="projects-section drive-gallery-wrapper">
+     
+          <DriveGallery />
+      </section>
+    </>
   );
 };
 

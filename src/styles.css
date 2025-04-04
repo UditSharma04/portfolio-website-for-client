@@ -376,6 +376,8 @@ img {
   cursor: pointer;
   transition: var(--transition);
   font-size: 0.9rem;
+  color: var(--text-color);
+  font-weight: 500;
 }
 
 .filter-btn:hover, .filter-btn.active {
